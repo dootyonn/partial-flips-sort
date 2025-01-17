@@ -1,0 +1,6 @@
+services:
+    quiz-sort:
+        image: quiz-sort
+        build:
+            context: .
+            dockerfile: Dockerfile

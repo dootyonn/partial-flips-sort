@@ -15,6 +15,7 @@ PRIVATE
 # quiz_sort_test
 
 find_package(GTest REQUIRED)
+include(GoogleTest)
 
 add_executable(quiz_sort_test
     partial_flip.t.cpp
@@ -29,3 +30,5 @@ target_link_libraries(quiz_sort_test
     gtest
     gtest_main
 )
+
+gtest_discover_tests(quiz_sort_test)

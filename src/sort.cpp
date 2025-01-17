@@ -1,5 +1,7 @@
 #include <partial_flip.hpp>
 
-int main(int argc, char** argv) {
+#include <iostream>
 
+int main(int argc, char** argv) {
+    std::cout << "Start..." << std::endl;
 }

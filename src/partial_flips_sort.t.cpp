@@ -69,71 +69,39 @@ namespace SWQuiz {
         ASSERT_TRUE(same_k);
     }
 
-    TEST(partial_flips_sort_test, multiple_element_longer_list) {
+    TEST(partial_flips_sort_test, input_is_reverse) {
         auto [ same_sort, same_k ] = do_partial_flips_sort_test(
-            { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
-            { 2, 9, 3, 8, 3, 7, 2, 5 },
-            { 1, 9, 6, 7, 2, 3, 8, 4, 5, 10 }
-        );
+                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+                { 10 },
+                { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }
+            );
 
-        ASSERT_TRUE(same_sort);
-        ASSERT_TRUE(same_k);
+            ASSERT_TRUE(same_sort);
+            ASSERT_TRUE(same_k);
     }
 
+    TEST(partial_flips_sort_test, multiple_element_longer_list) {
+        {
+            auto [ same_sort, same_k ] = do_partial_flips_sort_test(
+                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+                { 2, 9, 3, 8, 3, 7, 2, 5 },
+                { 1, 9, 6, 7, 2, 3, 8, 4, 5, 10 }
+            );
 
-    // TEST(partial_flips_sort_test, minmax_empty_input) {
-    //     auto [ same_sort, same_k ] = do_partial_flips_sort_minmax_test(
-    //         {},
-    //         {},
-    //         {}
-    //     );
+            ASSERT_TRUE(same_sort);
+            ASSERT_TRUE(same_k);
+        }
 
-    //     ASSERT_TRUE(same_sort);
-    //     ASSERT_TRUE(same_k);
-    // }
+        {
+            auto [ same_sort, same_k ] = do_partial_flips_sort_test(
+                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+                { 3, 10, 9, 3, 8, 3, 7, 5, 6, 2, 5, 4, 2 },
+                { 5, 1, 10, 8, 3, 4, 7, 2, 6, 9 }
+            );
 
-    // TEST(partial_flips_sort_test, minmax_one_element) {
-    //     auto [ same_sort, same_k ] = do_partial_flips_sort_minmax_test(
-    //         { 1 },
-    //         {},
-    //         { 1 }
-    //     );
-
-    //     ASSERT_TRUE(same_sort);
-    //     ASSERT_TRUE(same_k);
-    // }
-
-    // TEST(partial_flips_sort_test, minmax_multiple_element) {
-    //     auto [ same_sort, same_k ] = do_partial_flips_sort_minmax_test(
-    //         { 1, 2, 3, 4 },
-    //         { 4, 2, 4, 3 },
-    //         { 3, 2, 4, 1 }
-    //     );
-
-    //     ASSERT_TRUE(same_sort);
-    //     ASSERT_TRUE(same_k);
-    // }
-
-    // TEST(partial_flips_sort_test, minmax_multiple_element_already_sorted) {
-    //     auto [ same_sort, same_k ] = do_partial_flips_sort_minmax_test(
-    //         { 1, 2, 3, 4 },
-    //         { },
-    //         { 1, 2, 3, 4 }
-    //     );
-
-    //     ASSERT_TRUE(same_sort);
-    //     ASSERT_TRUE(same_k);
-    // }
-
-    // TEST(partial_flips_sort_test, minmax_multiple_element_longer_list) {
-    //     auto [ same_sort, same_k ] = do_partial_flips_sort_minmax_test(
-    //         { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
-    //         { 5, 4, 9, 8, 4, 6, 8, 7, 5 },
-    //         { 1, 9, 6, 7, 2, 3, 8, 4, 5, 10 }
-    //     );
-
-    //     ASSERT_TRUE(same_sort);
-    //     ASSERT_TRUE(same_k);
-    // }
+            ASSERT_TRUE(same_sort);
+            ASSERT_TRUE(same_k);
+        }
+    }
 
 }

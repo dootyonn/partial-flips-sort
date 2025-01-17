@@ -5,7 +5,7 @@
 
 namespace SWQuiz {
 
-    void partial_flip(std::vector<int>& values, int k);
+    void partial_flip(std::vector<unsigned int>& values, size_t k);
 
 }
 

@@ -56,3 +56,25 @@ After 4th flip (k = 3): arr = [1, 2, 3, 4], which is sorted.
  
 
 You can use the language of your choice. You can submit your answer by emailing us the code or by sending us a link to a public Git repository. 
+
+## Instructions
+
+### Run with docker
+
+Container must be built before running the sorting executable. Run the following command to build the container:
+
+```
+$ docker build -t quizsort .
+```
+
+Run the following command to run the sorting executable with the input array [3,2,4,1]:
+
+```
+$ docker run quizsort 3 2 4 1
+```
+It should print the following output:
+
+```
+sorted array: [ 1 2 3 4 ]
+k values: [ 3 4 2 3 2 ]
+```

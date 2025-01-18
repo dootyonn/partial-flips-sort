@@ -13,6 +13,8 @@ COPY * .
 
 RUN mkdir build
 WORKDIR /app/build
-RUN cmake .. && make
+RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+RUN cmake --build . --config Release
+RUN cmake --install . 
 
-CMD [ "ls", "/app" ]
+ENTRYPOINT [ "/usr/local/bin/quizsort" ]

@@ -12,18 +12,20 @@ PUBLIC
     .
 )
 
-# quiz_sort
+# quizsort
 
-add_executable(quiz_sort 
+add_executable(quizsort 
     main.cpp
     
 )
 
-target_link_libraries(quiz_sort
+target_link_libraries(quizsort
     partial_flip_sort
 )
 
 # partial_flip_sort_test
+
+include(GoogleTest)
 
 add_executable(partial_flip_sort_test
     partial_flip.t.cpp
@@ -42,3 +44,10 @@ target_link_libraries(partial_flip_sort_test
 )
 
 gtest_discover_tests(partial_flip_sort_test)
+
+# install files
+
+install(
+    TARGETS quizsort 
+    RUNTIME DESTINATION bin COMPONENT Runtime
+) 

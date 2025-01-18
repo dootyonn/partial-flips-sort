@@ -1,11 +1,21 @@
 #include <gtest/gtest.h>
 
 #include <partial_flips_sort.hpp>
+#include <partial_flip.hpp>
 
+#include <ranges>
 #include <algorithm>
 #include <vector>
 
 namespace SWQuiz {
+
+    template <typename T>
+    bool is_same_array(
+        const std::vector<T>& l,
+        const std::vector<T>& r
+    ) {
+        return l.size() == r.size() && std::equal(begin(l), end(l), begin(r));
+    }
 
     std::tuple<bool, bool> do_partial_flips_sort_test(
         const std::vector<unsigned int>& expected_input,
@@ -18,10 +28,8 @@ namespace SWQuiz {
         partial_flips_sort(temp_input, k);
 
         return { 
-            expected_input.size() == temp_input.size() && 
-                std::equal(begin(expected_input), end(expected_input), begin(temp_input)),
-            expected_k.size() == k.size() &&
-                std::equal(begin(expected_k), end(expected_k), begin(k)) 
+            is_same_array(expected_input, temp_input),
+            is_same_array(expected_k, k)
         };
     }
 
@@ -71,13 +79,13 @@ namespace SWQuiz {
 
     TEST(partial_flips_sort_test, input_is_reverse) {
         auto [ same_sort, same_k ] = do_partial_flips_sort_test(
-                { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
-                { 10 },
-                { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }
-            );
+            { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
+            { 10 },
+            { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 }
+        );
 
-            ASSERT_TRUE(same_sort);
-            ASSERT_TRUE(same_k);
+        ASSERT_TRUE(same_sort);
+        ASSERT_TRUE(same_k);
     }
 
     TEST(partial_flips_sort_test, multiple_element_longer_list) {
@@ -104,19 +112,22 @@ namespace SWQuiz {
         }
     }
 
-    bool is_valid_sort(const std::vector<unsigned int>& values) {
-        for (unsigned int i = 1; i <= values.size(); ++i) {
-            if (values[i] != i) {
-                return false;
-            }
+    TEST(partial_flips_sort_test, can_reconstruct) {
+        static const std::vector<unsigned int> original = { 5, 1, 10, 8, 3, 4, 7, 2, 6, 9 };
+        static const std::vector<unsigned int> sorted = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        std::vector<unsigned int> to_sort = original;
+        std::vector<size_t> k_values;
+
+        partial_flips_sort(to_sort, k_values);
+
+        ASSERT_TRUE(is_same_array(to_sort, sorted));
+
+        for(size_t k : std::ranges::views::reverse(k_values)) {
+            partial_flip(to_sort, k);
         }
 
-        return true;
-    }
-
-    TEST(partial_flips_sort_test, stress_test) {
-
-
-    }
+        ASSERT_TRUE(is_same_array(to_sort, original));
+    }    
 
 }

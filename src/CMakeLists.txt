@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
+include(GoogleTest)
+
 # partial_flip_sort
 
 add_library(partial_flip_sort
@@ -25,8 +27,6 @@ target_link_libraries(quizsort
 
 # partial_flip_sort_test
 
-include(GoogleTest)
-
 add_executable(partial_flip_sort_test
     partial_flip.t.cpp
     partial_flips_sort.t.cpp
@@ -44,6 +44,23 @@ target_link_libraries(partial_flip_sort_test
 )
 
 gtest_discover_tests(partial_flip_sort_test)
+
+# Functional Tests
+
+add_executable(sort_functional_test
+    partial_flips_sort.f.t.cpp
+)
+
+target_include_directories(sort_functional_test
+PRIVATE
+    .
+)
+
+target_link_libraries(sort_functional_test
+    gtest
+    gtest_main
+    partial_flip_sort
+)
 
 # install files
 

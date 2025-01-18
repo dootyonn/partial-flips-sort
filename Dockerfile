@@ -18,3 +18,4 @@ RUN cmake --build . --config Release
 RUN cmake --install . 
 
 ENTRYPOINT [ "/usr/local/bin/quizsort" ]
+CMD [ "3", "2", "4", "1" ]

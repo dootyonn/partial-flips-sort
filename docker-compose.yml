@@ -1,6 +1,0 @@
-services:
-    quizsort:
-        image: quizsort
-        build:
-            context: .
-            dockerfile: Dockerfile

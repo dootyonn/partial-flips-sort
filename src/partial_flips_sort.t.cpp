@@ -104,4 +104,19 @@ namespace SWQuiz {
         }
     }
 
+    bool is_valid_sort(const std::vector<unsigned int>& values) {
+        for (unsigned int i = 1; i <= values.size(); ++i) {
+            if (values[i] != i) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    TEST(partial_flips_sort_test, stress_test) {
+
+
+    }
+
 }

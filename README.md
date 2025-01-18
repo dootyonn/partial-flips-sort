@@ -1,6 +1,6 @@
 # Quiz
 
-## Question 1: Sorting Algorithm (partial flips) 
+## Question: Sorting Algorithm (partial flips) 
 
 Given an array of integers arr, sort the array by performing a series of partial flips. 
 
@@ -78,3 +78,32 @@ It should print the following output:
 sorted array: [ 1 2 3 4 ]
 k values: [ 3 4 2 3 2 ]
 ```
+
+### Run in Ubuntu Linux
+
+\* Only tested with Ubuntu 24.04
+
+Install the build dependencies:
+
+```
+$ apt-get update
+$ apt-get install g++ ninja-build cmake libgtest-dev
+```
+
+Build the executable with cmake
+
+```
+$ mkdir build && cd build
+$ cmake .. -DCMAKE_INSTALL_PREFIX=<installation-path>
+$ cmake --build . --config Release
+$ cmake --install .
+```
+Run the executable
+
+```
+$ <installation-path>/bin/quizsort 3 2 4 1
+```
+
+### Solution Discussion
+
+My solution for the partial flips sort algorithm does not give the optimal solution with the minimal amount of flip but is within in the limit of 10 * length(arr) flips asked by the problem. The solution in the example can solve the problem with 4 flips, my algorithm can solve the same problem with 5 steps, which prove that it is not the optimal solution. However, my solution will always arrive to a solution with at most 2 flips per element in the input array. 

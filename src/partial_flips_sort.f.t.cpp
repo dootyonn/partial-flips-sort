@@ -4,7 +4,6 @@
 #include <partial_flip.hpp>
 
 #include <algorithm>
-#include <ranges>
 #include <iostream>
 #include <vector>
 
@@ -101,8 +100,8 @@ namespace SWQuiz {
     ) {
         std::vector<unsigned int> to_unsort = result;
 
-        for(size_t k : std::ranges::views::reverse(k_values)) {
-            partial_flip(to_unsort, k);
+        for (auto it = k_values.rbegin(); it != k_values.rend(); ++it) {
+            partial_flip(to_unsort, *it);
         }
 
         return is_same_array(expected, to_unsort);

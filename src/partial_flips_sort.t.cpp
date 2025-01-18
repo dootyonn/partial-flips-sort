@@ -3,7 +3,6 @@
 #include <partial_flips_sort.hpp>
 #include <partial_flip.hpp>
 
-#include <ranges>
 #include <algorithm>
 #include <vector>
 
@@ -23,15 +22,15 @@ namespace SWQuiz {
         const std::vector<unsigned int>& input
     ) {
         std::vector<unsigned int> temp_input = input;
-        std::vector<size_t> k;
+        std::vector<size_t> k_values;
 
-        partial_flips_sort(temp_input, k);
+        partial_flips_sort(temp_input, k_values);
 
         bool is_same_sort = is_same_array(expected_input, temp_input);
-        bool is_same_k = is_same_array(expected_k, k);
+        bool is_same_k = is_same_array(expected_k, k_values);
 
-        for(size_t k : std::ranges::views::reverse(k)) {
-            partial_flip(temp_input, k);
+        for (auto it = k_values.rbegin(); it != k_values.rend(); ++it) {
+            partial_flip(temp_input, *it);
         }
 
         bool can_be_reconstructed = is_same_array(temp_input, input);
